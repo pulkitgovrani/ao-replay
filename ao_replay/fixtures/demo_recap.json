@@ -1,0 +1,79 @@
+{
+  "project": {"id": "ao-replay", "name": "AO Replay"},
+  "generated_at": "2026-08-13T09:40:00Z",
+  "window": {"start": "2026-08-13T07:30:00Z", "end": "2026-08-13T09:35:00Z"},
+  "stats": {
+    "agent_count": 3,
+    "harnesses": {"claude-code": 3},
+    "wall_clock_seconds": 6900,
+    "cumulative_agent_seconds": 17400,
+    "time_saved_seconds": 10500,
+    "time_saved_pct": 60.3,
+    "sessions_total": 3,
+    "prs_opened": 3,
+    "prs_merged": 3,
+    "additions": 842,
+    "deletions": 61,
+    "files_changed": 14,
+    "ci_checks_passed": 9,
+    "ci_checks_failed": 1,
+    "tokens_total": 486000,
+    "cost_usd": 4.32
+  },
+  "sessions": [
+    {
+      "id": "ao-replay-1",
+      "display_name": "ingest-layer",
+      "harness": "claude-code",
+      "kind": "worker",
+      "branch": "ao/ao-replay-1/root",
+      "created_at": "2026-08-13T07:30:00Z",
+      "ended_at": "2026-08-13T08:52:00Z",
+      "duration_seconds": 4920,
+      "activity_state": "idle",
+      "is_terminated": true,
+      "pr": {"number": 1, "state": "merged", "ci_state": "passing", "additions": 310, "deletions": 12}
+    },
+    {
+      "id": "ao-replay-2",
+      "display_name": "recap-renderer",
+      "harness": "claude-code",
+      "kind": "worker",
+      "branch": "ao/ao-replay-2/root",
+      "created_at": "2026-08-13T07:31:00Z",
+      "ended_at": "2026-08-13T09:10:00Z",
+      "duration_seconds": 5940,
+      "activity_state": "idle",
+      "is_terminated": true,
+      "pr": {"number": 2, "state": "merged", "ci_state": "passing", "additions": 402, "deletions": 30}
+    },
+    {
+      "id": "ao-replay-3",
+      "display_name": "cli-and-narration",
+      "harness": "claude-code",
+      "kind": "worker",
+      "branch": "ao/ao-replay-3/root",
+      "created_at": "2026-08-13T07:32:00Z",
+      "ended_at": "2026-08-13T09:35:00Z",
+      "duration_seconds": 6540,
+      "activity_state": "idle",
+      "is_terminated": true,
+      "pr": {"number": 3, "state": "merged", "ci_state": "passing", "additions": 130, "deletions": 19}
+    }
+  ],
+  "timeline": [
+    {"ts": "2026-08-13T07:30:00Z", "session_id": "ao-replay-1", "type": "session_created", "label": "ingest-layer spawned (claude-code)"},
+    {"ts": "2026-08-13T07:31:00Z", "session_id": "ao-replay-2", "type": "session_created", "label": "recap-renderer spawned (claude-code)"},
+    {"ts": "2026-08-13T07:32:00Z", "session_id": "ao-replay-3", "type": "session_created", "label": "cli-and-narration spawned (claude-code)"},
+    {"ts": "2026-08-13T08:40:00Z", "session_id": "ao-replay-1", "type": "pr_created", "label": "PR #1 opened: SQLite ingestion + stats"},
+    {"ts": "2026-08-13T08:50:00Z", "session_id": "ao-replay-1", "type": "pr_check_recorded", "label": "CI passed on PR #1"},
+    {"ts": "2026-08-13T08:52:00Z", "session_id": "ao-replay-1", "type": "pr_updated", "label": "PR #1 merged"},
+    {"ts": "2026-08-13T09:00:00Z", "session_id": "ao-replay-2", "type": "pr_created", "label": "PR #2 opened: recap HTML renderer"},
+    {"ts": "2026-08-13T09:05:00Z", "session_id": "ao-replay-2", "type": "pr_check_recorded", "label": "CI failed on PR #2 (lint)"},
+    {"ts": "2026-08-13T09:08:00Z", "session_id": "ao-replay-2", "type": "pr_check_recorded", "label": "CI passed on PR #2 after fix"},
+    {"ts": "2026-08-13T09:10:00Z", "session_id": "ao-replay-2", "type": "pr_updated", "label": "PR #2 merged"},
+    {"ts": "2026-08-13T09:28:00Z", "session_id": "ao-replay-3", "type": "pr_created", "label": "PR #3 opened: CLI + narration + README"},
+    {"ts": "2026-08-13T09:33:00Z", "session_id": "ao-replay-3", "type": "pr_check_recorded", "label": "CI passed on PR #3"},
+    {"ts": "2026-08-13T09:35:00Z", "session_id": "ao-replay-3", "type": "pr_updated", "label": "PR #3 merged"}
+  ]
+}
