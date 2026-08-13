@@ -2,6 +2,7 @@
 
 import json
 import os
+import re
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
@@ -38,16 +39,34 @@ def _load_fixture() -> dict:
 
 # --- datetime helpers -------------------------------------------------
 
+# AO's Go daemon stores timestamps as time.Time's default String() format,
+# e.g. "2026-08-13 07:36:32.196718 +0000 UTC" — not Python-isoformat-parseable.
+_GO_TS_RE = re.compile(
+    r"^(?P<base>\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}(?:\.\d+)?)"
+    r"(?:\s*(?P<offset>[+-]\d{2}:?\d{2}))?"
+    r"(?:\s*\w+)?$"
+)
+
+
 def _parse_dt(value):
     if value is None:
         return None
     text = str(value).strip()
     if not text:
         return None
-    if "T" not in text and " " in text:
-        text = text.replace(" ", "T", 1)
-    if text.endswith("Z"):
-        text = text[:-1] + "+00:00"
+    m = _GO_TS_RE.match(text)
+    if m:
+        text = m.group("base").replace(" ", "T", 1)
+        offset = m.group("offset")
+        if offset:
+            if ":" not in offset:
+                offset = offset[:3] + ":" + offset[3:]
+            text += offset
+    else:
+        if "T" not in text and " " in text:
+            text = text.replace(" ", "T", 1)
+        if text.endswith("Z"):
+            text = text[:-1] + "+00:00"
     dt = datetime.fromisoformat(text)
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=timezone.utc)
